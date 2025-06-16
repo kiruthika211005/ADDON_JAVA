@@ -1,0 +1,95 @@
+create table employee(
+    -> empid int primary key,
+    -> name varchar(25),
+    -> dept varchar(25),
+    -> salary int,
+    -> joindata date
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> select*from employee
+    -> ;
+Empty set (0.04 sec)
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| empid    | int         | NO   | PRI | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| dept     | varchar(25) | YES  |     | NULL    |       |
+| salary   | int         | YES  |     | NULL    |       |
+| joindata | date        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+insert into employee(empid, name, dept, salary, joindata) values
+    ->      (1, 'blessy', 'finance', 50000, '2023-06-12'),
+    ->      (2, 'shivss', 'marketing', 45000, '2023-02-02'),
+    ->      (3, 'anushri', 'HR', 42000, '2022-05-01'),
+    ->      (4, 'mohana', 'finance', 22000, '2021-03-08'),
+    ->      (5, 'sahana', 'marketing', 35000, '2023-06-19'),
+    ->      (6, 'indhu', 'wd', 50000, '2023-10-5')
+    ->      ;
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0 
+
+mysql> select * from employee;
++-------+---------+-----------+--------+------------+
+| empid | name    | dept      | salary | joindata   |
++-------+---------+-----------+--------+------------+
+|     1 | blessy  | finance   |  50000 | 2023-06-12 |
+|     2 | shivss  | marketing |  45000 | 2023-02-02 |
+|     3 | anushri | HR        |  42000 | 2022-05-01 |
+|     4 | mohana  | finance   |  22000 | 2021-03-08 |
+|     5 | sahana  | marketing |  35000 | 2023-06-19 |
+|     6 | indhu   | wd        |  50000 | 2023-10-05 |
++-------+---------+-----------+--------+------------+
+6 rows in set (0.00 sec)
+
+select * from employee where
+    -> dept = 'HR';
++-------+---------+------+--------+------------+
+| empid | name    | dept | salary | joindata   |
++-------+---------+------+--------+------------+
+|     3 | anushri | HR   |  42000 | 2022-05-01 |
++-------+---------+------+--------+------------+
+1 row in set (0.03 sec)
+
+ update employee
+    -> set dept ='web'
+    -> where name = 'blessy';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from employee;
++-------+---------+-----------+--------+------------+
+| empid | name    | dept      | salary | joindata   |
++-------+---------+-----------+--------+------------+
+|     1 | blessy  | web       |  50000 | 2023-06-12 |
+|     2 | shivss  | marketing |  45000 | 2023-02-02 |
+|     3 | anushri | HR        |  42000 | 2022-05-01 |
+|     4 | mohana  | finance   |  22000 | 2021-03-08 |
+|     5 | sahana  | marketing |  35000 | 2023-06-19 |
+|     6 | indhu   | wd        |  50000 | 2023-10-05 |
++-------+---------+-----------+--------+------------+
+6 rows in set (0.00 sec)
+
+ update employee
+    -> set salary = 22000
+    -> where name = 'indhu';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from employee;
++-------+---------+-----------+--------+------------+
+| empid | name    | dept      | salary | joindata   |
++-------+---------+-----------+--------+------------+
+|     1 | blessy  | web       |  50000 | 2023-06-12 |
+|     2 | shivss  | marketing |  45000 | 2023-02-02 |
+|     3 | anushri | HR        |  42000 | 2022-05-01 |
+|     4 | mohana  | finance   |  22000 | 2021-03-08 |
+|     5 | sahana  | marketing |  35000 | 2023-06-19 |
+|     6 | indhu   | wd        |  22000 | 2023-10-05 |
++-------+---------+-----------+--------+------------+
+6 rows in set (0.00 sec)
