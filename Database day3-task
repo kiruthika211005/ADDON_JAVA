@@ -1,0 +1,126 @@
+create table students(
+    -> sname varchar(50),
+    -> srollno int,
+    -> smark int
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc customer;
+ERROR 1146 (42S02): Table 'customer.customer' doesn't exist
+mysql> desc students;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| sname   | varchar(50) | YES  |     | NULL    |       |
+| srollno | int         | YES  |     | NULL    |       |
+| smark   | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
+ insert into student (sname,srollno,smark)values
+    -> ('blessy',01,80),
+    -> ('shivs',02,90),
+    -> ('anu',03,68)
+    -> ;
+Query OK, 3 rows affected (0.04 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select*from students
+    -> ;
+Empty set (0.00 sec)
+
+mysql> select*from student;
++--------+---------+-------+
+| sname  | srollno | smark |
++--------+---------+-------+
+| blessy |       1 |    80 |
+| shivs  |       2 |    90 |
+| anu    |       3 |    68 |
++--------+---------+-------+
+3 rows in set (0.00 sec)
+
+select*from student
+    -> where smark > 80;
++-------+---------+-------+
+| sname | srollno | smark |
++-------+---------+-------+
+| shivs |       2 |    90 |
++-------+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> create table course(
+    -> coursename varchar(50),
+    -> coursefee int
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into course(coursename,coursefee)values
+    -> ('web',50000),
+    -> ('fsd',60000),
+    -> ('sd',45000),
+    -> ('data analyst',67000),
+    -> ('devops',55000)
+    -> ;
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select*from course;
++--------------+-----------+
+| coursename   | coursefee |
++--------------+-----------+
+| web          |     50000 |
+| fsd          |     60000 |
+| sd           |     45000 |
+| data analyst |     67000 |
+| devops       |     55000 |
++--------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select*from course
+    -> order by coursefee asc;
++--------------+-----------+
+| coursename   | coursefee |
++--------------+-----------+
+| sd           |     45000 |
+| web          |     50000 |
+| devops       |     55000 |
+| fsd          |     60000 |
+| data analyst |     67000 |
++--------------+-----------+
+5 rows in set (0.00 sec)
+
+ create table books(
+    -> sno int,
+    -> bookname varchar(50)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+ insert into books(sno,bookname)values
+    -> (1,'python'),
+    -> (2,'react'),
+    -> (3,'react.js'),
+    -> (4,'java'),
+    -> (5,'javascript');
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select*from books;
++------+------------+
+| sno  | bookname   |
++------+------------+
+|    1 | python     |
+|    2 | react      |
+|    3 | react.js   |
+|    4 | java       |
+|    5 | javascript |
++------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from books
+    -> where bookname like 'r%';
++------+----------+
+| sno  | bookname |
++------+----------+
+|    2 | react    |
+|    3 | react.js |
++------+----------+
+2 rows in set (0.00 sec)
