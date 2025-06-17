@@ -293,3 +293,231 @@ select *from emp
 |  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |      15600.00 |
 +-------+--------+-----------+------+------------+---------+---------+--------+---------------+
 9 rows in set (0.00 sec)
+
+select ename,hiredate from emp
+    -> where hiredate > '1981-12-31' and hiredate < '1987-01-01';
++--------+------------+
+| ename  | hiredate   |
++--------+------------+
+| SCOTT  | 1982-12-09 |
+| ADAMS  | 1983-01-12 |
+| MILLER | 1982-01-23 |
++--------+------------+
+3 rows in set (0.00 sec)
+
+
+mysql> select ename,hiredate from emp
+    -> where hiredate between '1981-12-31'and  '1987-01-01';
++--------+------------+
+| ename  | hiredate   |
++--------+------------+
+| SCOTT  | 1982-12-09 |
+| ADAMS  | 1983-01-12 |
+| MILLER | 1982-01-23 |
++--------+------------+
+3 rows in set (0.01 sec)
+
+
+ select count(*) from emp
+    -> where sal<2000 and deptno = 10;
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.08 sec)
+
+
+mysql>
+mysql> select deptno , sal from emp
+    -> where deptno=10;
++--------+---------+
+| deptno | sal     |
++--------+---------+
+|     10 | 2450.00 |
+|     10 | 5000.00 |
+|     10 | 1300.00 |
++--------+---------+
+3 rows in set (0.00 sec)
+
+
+mysql> select sum(sal)
+    -> from emp
+    -> where job='clerk';
++----------+
+| sum(sal) |
++----------+
+|  4150.00 |
++----------+
+1 row in set (0.00 sec) 
+
+
+select ename,sum(sal)
+    -> from emp
+    -> where job='clerk'
+    -> group by ename;
++--------+----------+
+| ename  | sum(sal) |
++--------+----------+
+| SMITH  |   800.00 |
+| ADAMS  |  1100.00 |
+| JAMES  |   950.00 |
+| MILLER |  1300.00 |
++--------+----------+
+4 rows in set (0.00 sec)
+
+
+select avg(sal) from emp;
++-------------+
+| avg(sal)    |
++-------------+
+| 2073.214286 |
++-------------+
+1 row in set (0.02 sec)
+
+
+ select avg(sal),sum(sal),count(*),max(sal) from emp;
++-------------+----------+----------+----------+
+| avg(sal)    | sum(sal) | count(*) | max(sal) |
++-------------+----------+----------+----------+
+| 2073.214286 | 29025.00 |       14 |  5000.00 |
++-------------+----------+----------+----------+
+1 row in set (0.00 sec)
+
+
+select sum(sal)
+    -> from emp
+    -> group by job;
++----------+
+| sum(sal) |
++----------+
+|  4150.00 |
+|  5600.00 |
+|  8275.00 |
+|  6000.00 |
+|  5000.00 |
++----------+
+5 rows in set (0.00 sec)
+
+ select count(*)
+    -> from emp
+    -> group by deptno;
++----------+
+| count(*) |
++----------+
+|        5 |
+|        6 |
+|        3 |
++----------+
+3 rows in set (0.00 sec)
+
+ select avg(sal)
+    -> from emp
+    -> group by mgr;
++-------------+
+| avg(sal)    |
++-------------+
+|  800.000000 |
+| 1310.000000 |
+| 2758.333333 |
+| 3000.000000 |
+| 5000.000000 |
+| 1100.000000 |
+| 1300.000000 |
++-------------+
+7 rows in set (0.04 sec)
+
+ select sum(comm)
+    -> from emp
+    -> group by comm;
++-----------+
+| sum(comm) |
++-----------+
+|      NULL |
+|    300.00 |
+|    500.00 |
+|   1400.00 |
+|      0.00 |
++-----------+
+5 rows in set (0.00 sec)
+
+mysql> select count(*)
+    -> from emp
+    -> group by hiredate;
++----------+
+| count(*) |
++----------+
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        1 |
+|        2 |
+|        1 |
++----------+
+13 rows in set (0.00 sec)
+
+ select job, sum(sal)
+    -> from emp
+    -> group by job
+    -> having sum(sal) > 5000;
++----------+----------+
+| job      | sum(sal) |
++----------+----------+
+| SALESMAN |  5600.00 |
+| MANAGER  |  8275.00 |
+| ANALYST  |  6000.00 |
++----------+----------+
+3 rows in set (0.00 sec)
+
+ select count(*),deptno
+    -> from emp
+    -> where job='clerk'
+    -> group by deptno
+    -> having count(*) >= 2;
++----------+--------+
+| count(*) | deptno |
++----------+--------+
+|        2 |     20 |
++----------+--------+
+1 row in set (0.00 sec)
+
+ select deptno,avg(sal)
+    -> from emp
+    -> group by deptno
+    -> having avg(sal) > 2000;
++--------+-------------+
+| deptno | avg(sal)    |
++--------+-------------+
+|     20 | 2175.000000 |
+|     10 | 2916.666667 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+ select job,sum(comm)
+    -> from emp
+    -> group by job
+    -> having sum(comm) >= 1000;
++----------+-----------+
+| job      | sum(comm) |
++----------+-----------+
+| SALESMAN |   2200.00 |
++----------+-----------+
+1 row in set (0.00 sec)
+
+ select count(*),job
+    -> from emp
+    -> where job='manager'
+    -> having count(*)>2;
++----------+---------+
+| count(*) | job     |
++----------+---------+
+|        3 | MANAGER |
++----------+---------+
+1 row in set (0.00 sec)
