@@ -1,0 +1,43 @@
+package Mysqlprogram;
+import java.sql.*;
+public class jdbcMain {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		//Class.forName("com.mysql.cj.jdbc.Driver");
+		String Url="jdbc:mysql://Localhost:3306/emp";
+		String userName="root";
+		String Password="Kgisl@123";
+		
+		Connection connect=DriverManager.getConnection(Url, userName, Password);
+        System.out.println("Driver Loader");
+        
+        int cid=03;
+        String cname="IM";
+        
+        String sql="insert into course values(? ,?)";
+        PreparedStatement st = connect.prepareStatement(sql);
+        st.setInt(1, cid);
+        st.setString(2, cname);
+        st.
+        
+       // String sql="update course set cname='WD' where cid=01";
+        
+     st.executeUpdate(sql);
+       System.out.println("Record inserted successfully");
+      // Statement st=connect.createStatement();
+     
+// System.out.println("updated"+" "+val+"rows");
+    // System.out.println("Table created successfully");  
+      
+//  ResultSet rs=st.executeQuery(sql);
+       // while(rs.next()) {
+        	//System.out.println(rs.getString(1));
+        }
+     
+// rs.next();
+        //System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
+        //rs.next();
+        //System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
+	}
+	
