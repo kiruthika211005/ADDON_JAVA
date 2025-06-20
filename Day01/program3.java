@@ -1,84 +1,38 @@
 package Day01;
 
-
-
 import java.util.*;
-
-
 
 public class program4 {
 
+public static void main(String[] args) {
 
+Scanner in=new Scanner(System.in);
 
+System.out.println("Enter amount:");
 
+int amt=in.nextInt();
 
-
-
-	public static void main(String[] args) {
-
-
-
-    
-
-
-
-	Scanner in=new Scanner(System.in);
-
-
-
-	System.out.println("Enter amount:");
-
-
-
-    
-
-
-
-	int amt=in.nextInt();
-
-
-
-	System.out.println("Enter pin number:");
-
-
-
+System.out.println("Enter pin number:");
+	
 	int pin=in.nextInt();
-
-
-
+	
 	if(pin==1234) {
-
-
 
 		if(amt<=5000) {
 
+System.out.println("withdrawn successfully...");
 
+}else {
 
-			System.out.println("withdrawn successfully...");
-
-
-
-		}else {
-
-
-
-			System.err.println("insufficient amount...");
-
-
+System.err.println("insufficient amount...");
 
 		}
 
+}else{
 
+System.out.println("invalid pinnumber...");
 
-	}else{
-
-
-
-		System.out.println("invalid pinnumber...");
-
-
-
-	}
+}
 
 
 
